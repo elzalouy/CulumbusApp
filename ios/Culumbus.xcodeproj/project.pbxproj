@@ -819,7 +819,7 @@
 				CODE_SIGN_ENTITLEMENTS = Culumbus/Culumbus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = T2F9Q79X6G;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Culumbus/Info.plist;
@@ -848,7 +848,7 @@
 				CODE_SIGN_ENTITLEMENTS = Culumbus/Culumbus.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = T2F9Q79X6G;
 				INFOPLIST_FILE = Culumbus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

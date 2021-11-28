@@ -110,6 +110,7 @@ export const listCities = (page) => {
   };
 };
 export const listAdrenalineCities = (page) => {
+  console.log('!!');
   return async (dispatch) => {
     await client
       .query({
