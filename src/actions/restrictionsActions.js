@@ -1,21 +1,24 @@
-
 import axios from 'axios';
 // import { useQuery } from '@apollo/client';
-import { ApolloClient, InMemoryCache, ApolloProvider, useQuery } from '@apollo/client';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+} from '@apollo/client';
 
-import { RESTRICTIONS } from './types';
+import {RESTRICTIONS} from './types';
 // import { onError } from 'apollo-link-error'
 
-import { LIST_COUNTRY_RESTRICTIONS, } from './queries';
-
+import {LIST_COUNTRY_RESTRICTIONS} from './queries';
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const client = new ApolloClient({
-    uri: BASE_URL,
-    cache: new InMemoryCache(),
-    // link:errorLink
-  });
+  uri: BASE_URL,
+  cache: new InMemoryCache(),
+  // link:errorLink
+});
 
 //   export const listCountryRestrions = () => {
 //     return async(dispatch) => {
@@ -27,9 +30,7 @@ const client = new ApolloClient({
 //           console.log('response')
 //           console.log(data)
 //           //  if(response.login.token){
-    
-      
-       
+
 //         // dispatch({type: RESTRICTIONS, countries:response.listCountryRestrictions})
 //     //  }else{
 //     //     dispatch({type: LOGIN_LOADING, state:false})
@@ -45,4 +46,3 @@ const client = new ApolloClient({
 
 //     }
 // }
-
