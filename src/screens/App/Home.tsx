@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import {normalize} from '../normalize';
-import {connect} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { normalize } from '../normalize';
+import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import {
   View,
@@ -17,7 +17,7 @@ import More from '../../components/More';
 // import SkeletonContent from 'react-native-skeleton-content-nonexpo';
 import Swiper from 'react-native-swiper';
 
-import {API_URL} from '@env';
+import { API_URL } from '@env';
 
 const w = Dimensions.get('window').width;
 const h = Dimensions.get('window').height;
@@ -43,12 +43,12 @@ function Home(props) {
                     </View>    
         </View> */}
       <View style={styles.header3}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <View style={{flex: 1}} />
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <View style={{ flex: 1 }} />
 
-          <View style={{flex: 2, alignItems: 'center'}}>
+          <View style={{ flex: 2, alignItems: 'center' }}>
             <Image
-              source={{uri: 'logo'}}
+              source={{ uri: 'logo' }}
               resizeMode="contain"
               style={styles.logo}
             />
@@ -70,12 +70,12 @@ function Home(props) {
 
       <ScrollView
         style={styles.subContainer}
-        contentContainerStyle={{alignItems: 'center'}}
+        contentContainerStyle={{ alignItems: 'center' }}
         showsVerticalScrollIndicator={false}>
         <TouchableOpacity
           onPress={() => props.navigation.navigate('CountryRestrictions')}>
           <ImageBackground
-            source={{uri: 'home5'}}
+            source={{ uri: 'home5' }}
             resizeMode="cover"
             style={styles.card2}>
             <View style={styles.textContainer}>
@@ -95,7 +95,7 @@ function Home(props) {
 
               </ImageBackground>
             </View> */}
-        <View style={[styles.card3, {marginTop: w * 0.03}]}>
+        <View style={[styles.card3, { marginTop: w * 0.03 }]}>
           <Swiper
             style={styles.wrapper}
             key={'1'}
@@ -133,20 +133,20 @@ function Home(props) {
             }>
             {(offers.length > 3
               ? [
-                  {name: 'Hotel offers', description: 'Latest hotel offers'},
-                ].concat(offers.slice(0, 3))
+                { name: 'Hotel offers', description: 'Latest hotel offers' },
+              ].concat(offers.slice(0, 3))
               : [
-                  {name: 'Hotel offers', description: 'Latest hotel offers'},
-                ].concat(offers)
+                { name: 'Hotel offers', description: 'Latest hotel offers' },
+              ].concat(offers)
             ).map((item, index) => (
               <TouchableOpacity
-                style={{width: w * 0.94, alignItems: 'center'}}
+                style={{ width: w * 0.94, alignItems: 'center' }}
                 key={'1' + index}
                 activeOpacity={1.0}
                 onPress={() =>
                   index == 0
                     ? props.navigation.navigate('AllHotelOffers')
-                    : props.navigation.navigate('HotelOffers', {offer: item})
+                    : props.navigation.navigate('HotelOffers', { offer: item })
                 }>
                 <ImageBackground
                   source={{
@@ -207,11 +207,11 @@ function Home(props) {
             }>
             {['x', 'x', 'x'].map((item) => (
               <TouchableOpacity
-                style={{width: w * 0.94, alignItems: 'center'}}
-                onPress={() => props.navigation.navigate('Cities', {index: 0})}
+                style={{ width: w * 0.94, alignItems: 'center' }}
+                onPress={() => props.navigation.navigate('Cities', { index: 0 })}
                 activeOpacity={1.0}>
                 <ImageBackground
-                  source={{uri: 'home4'}}
+                  source={{ uri: 'home4' }}
                   resizeMode="cover"
                   style={styles.card2}>
                   <View style={styles.textContainer}>
@@ -224,7 +224,7 @@ function Home(props) {
           </Swiper>
         </View>
 
-        <View style={styles.card3}>
+        {/* <View style={styles.card3}>
           <Swiper
             style={styles.wrapper}
             // onIndexChanged={(x)=>{let y=this.state.indexes;y[index]=x;this.setState({indexes:y})}}
@@ -278,7 +278,7 @@ function Home(props) {
               </TouchableOpacity>
             ))}
           </Swiper>
-        </View>
+        </View> */}
       </ScrollView>
     </View>
   );
