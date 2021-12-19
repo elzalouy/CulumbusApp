@@ -42,13 +42,15 @@ function EventDetails(props) {
   // console.log('authLink')
 
   useEffect(() => {
-    var x =
-      event.cover_image_url || props.route.params.event.images?.length
-        ? `${base_url}${props.route.params.event.images[0]}.png`
-        : null;
-    console.log(x);
+    var x;
+    if(event){
+      if( event.cover_image_url)
+        x =  event.cover_image_url
+      if(event.images?.length)
+        x=`${base_url}${event.images[0]}.png`
+    }
     setImgUrl(x);
-  }, []);
+  }, [event]);
   //   if (props.venues.length !== venues.length) {
   //     // Row changed since last render. Update isScrollingDown.
   //     setVenues(props.venues);

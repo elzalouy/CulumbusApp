@@ -25,12 +25,21 @@ function Card(props) {
   // console.log('authLink')
 
   useEffect(() => {
-    var x =
-      props.event.cover_image_url || props.event.images?.length
-        ? `${base_url}${props.event.images[0]}.png`
-        : null;
-    console.log(x);
+    var x ;
+    if(props.event){
+      if( props.event.cover_image_url)
+        x =  props.event.cover_image_url
+      if(props.event.images?.length)
+        x=`${base_url}${props.event.images[0]}.png`
+
+
+    // var x =
+    //   props.event.cover_image_url || props.event.images?.length
+    //     ? `${base_url}${props.event.images[0]}.png`
+    //     : null;
+    //console.log(x);
     setImgUrl(x);
+  }
   }, []);
   return (
     <TouchableOpacity

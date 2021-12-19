@@ -38,7 +38,6 @@ export const listEvents = () => {
     await axios
       .get(url + 'events?limit=6', {})
       .then(async function (response) {
-        console.log(response);
         dispatch({type: EVENTS, events: response.data});
       })
       .catch(function (error) {
@@ -79,7 +78,6 @@ export const listCityActivities = (cityID) => {
         {},
       )
       .then(async function (response) {
-        console.log(response);
         dispatch({type: EVENTS, events: response.data.data});
       })
       .catch(function (error) {
@@ -110,7 +108,6 @@ export const listCities = (page) => {
   };
 };
 export const listAdrenalineCities = (page) => {
-  console.log('!!');
   return async (dispatch) => {
     await client
       .query({

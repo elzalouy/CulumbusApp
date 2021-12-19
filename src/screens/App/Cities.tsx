@@ -2,6 +2,7 @@ import React, {useState, useCallback, useEffect} from 'react';
 import {normalize} from '../normalize';
 import {connect} from 'react-redux';
 import * as actions from '../../actions';
+
 import {
   View,
   Text,
@@ -25,6 +26,8 @@ const h = Dimensions.get('window').height;
 function Cities(props) {
   // const loader={id:'1111',cover_image_url:'',name:'',country:{name:''}}
   const [cities, setCities] = useState([]);
+  const [citiesCopy, setCitiesCopy] = useState([]);
+
   const [loading, setLoading] = useState({});
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(20);
@@ -33,9 +36,12 @@ function Cities(props) {
     onEndReachedCalledDuringMomentum,
     setOnEndReachedCalledDuringMomentum,
   ] = useState(true);
-  console.log(cities);
+  //console.log(cities[1]);
   if (props.cities.length !== cities.length) {
+    //console.log(props.cities[0])
     setCities(props.cities);
+    setCitiesCopy(props.cities);
+
   }
 
   useEffect(() => {
@@ -55,7 +61,11 @@ function Cities(props) {
     x[index] = true;
     setLoading(x);
   }
-
+  function filterCities(){
+    var tmp = cities.filter(cit=> cit.code.toLowerCase().includes(search.toLowerCase()))
+    setCitiesCopy(tmp)
+    //console.log(tmp,'search')
+  }
   function Loader() {
     return (
       <TouchableOpacity style={{marginBottom: w * 0.03}} activeOpacity={0.8}>
@@ -86,7 +96,7 @@ function Cities(props) {
     <View style={styles.container}>
       <Header nav={props.navigation} />
 
-      {cities.length == 0 ? (
+      {citiesCopy.length == 0 ? (
         <>
           <Text style={styles.txt}>Cities</Text>
           <View style={styles.row}>
@@ -119,20 +129,8 @@ function Cities(props) {
         </>
       ) : (
         //   null
-        <FlatList
-          showsVerticalScrollIndicator={false}
-          extraData={cities}
-          data={cities}
-          style={{marginTop: w * 0.05, paddingBottom: w * 0.01, width: w * 0.9}}
-          contentContainerStyle={{alignItems: 'center'}}
-          keyExtractor={(item, index) => item.uuid}
-          onMomentumScrollBegin={() => {
-            setOnEndReachedCalledDuringMomentum(false);
-          }}
-          onEndReachedThreshold={0.03}
-          onEndReached={({distanceFromEnd}) => loadMoreCities()}
-          ListHeaderComponent={() => (
-            <>
+        <>
+        <>
               <Text style={styles.txt}>Cities</Text>
               <View style={styles.row}>
                 <TextInput
@@ -144,6 +142,7 @@ function Cities(props) {
                 />
                 {/* {search.length>0? */}
                 <TouchableOpacity
+                onPress={()=>filterCities()}
                   style={{
                     width: w * 0.15,
                     justifyContent: 'center',
@@ -158,7 +157,46 @@ function Cities(props) {
                 {/* :null} */}
               </View>
             </>
-          )}
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          extraData={citiesCopy}
+          data={citiesCopy}
+          style={{marginTop: w * 0.05, paddingBottom: w * 0.01, width: w * 0.9}}
+          contentContainerStyle={{alignItems: 'center'}}
+          keyExtractor={(item, index) => item.uuid}
+          onMomentumScrollBegin={() => {
+            setOnEndReachedCalledDuringMomentum(false);
+          }}
+          onEndReachedThreshold={0.03}
+          onEndReached={({distanceFromEnd}) => loadMoreCities()}
+          // ListHeaderComponent={() => (
+          //   // <>
+          //   //   <Text style={styles.txt}>Cities</Text>
+          //   //   <View style={styles.row}>
+          //   //     <TextInput
+          //   //       style={styles.input}
+          //   //       onChangeText={(text) => setSearch(text)}
+          //   //       value={search}
+          //   //       placeholder="Search for city"
+          //   //       // keyboardType="numeric"
+          //   //     />
+          //   //     {/* {search.length>0? */}
+          //   //     <TouchableOpacity
+          //   //       style={{
+          //   //         width: w * 0.15,
+          //   //         justifyContent: 'center',
+          //   //         alignItems: 'center',
+          //   //       }}>
+          //   //       <Icon
+          //   //         name={'arrow-right-circle'}
+          //   //         size={normalize(25)}
+          //   //         color={'#203152'}
+          //   //       />
+          //   //     </TouchableOpacity>
+          //   //     {/* :null} */}
+          //   //   </View>
+          //   // </>
+          // )}
           ListFooterComponent={() =>
             citiesLoaded || search.length > 0 ? null : (
               <ActivityIndicator
@@ -175,11 +213,7 @@ function Cities(props) {
                 style={{marginBottom: w * 0.03}}
                 activeOpacity={0.8}
                 onPress={() =>
-                  item.name
-                    ? props.route.params.index == 1
-                      ? props.navigation.navigate('Adrenaline', {city: item})
-                      : props.navigation.navigate('CityOfTheDay', {city: item})
-                    : null
+                  props.navigation.navigate('CityOfTheDay', {city: item})
                 }>
                 <SkeletonContent
                   containerStyle={[styles.img, {position: 'absolute'}]}
@@ -211,6 +245,7 @@ function Cities(props) {
             // )}
           }
         />
+        </>
       )}
     </View>
   );

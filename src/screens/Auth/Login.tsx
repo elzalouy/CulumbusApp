@@ -102,7 +102,7 @@ function Login(props) {
                     </TouchableOpacity>
                     
                 </View>
-                <TouchableOpacity style={{marginTop:h*0.05,}}activeOpacity={1.0} onPress={()=>this.login()}>
+                <TouchableOpacity style={{marginTop:h*0.05,}}activeOpacity={1.0} onPress={()=>props.navigation.navigate('Register')}>
             <Text style={styles.accountText}>Dont’ have an account yet?{'\n'}sign up now</Text>
             </TouchableOpacity>
                 </ScrollView>

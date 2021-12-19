@@ -41,6 +41,7 @@ function CityOfTheDay(props) {
   //     setVenues(props.venues);
   //   }
   if (props.events.length !== events.length) {
+    console.log(props.events,' the events')
     setEvents(props.events);
   }
 

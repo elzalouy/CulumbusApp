@@ -25,6 +25,7 @@ function Home(props) {
   const [offers, setOffers] = useState([]);
 
   if (props.offers !== offers) {
+    console.log(props.offers, offers.length)
     setOffers(props.offers);
   }
 

@@ -62,11 +62,11 @@ function Register(props) {
     
 
     function isMobileNumber(str) {
-        // if (typeof str != "string") return false
-        // return !isNaN(str) && 
-        //        !isNaN(parseFloat(str)) &&
-        //             str.length===11
-        return true
+        if (typeof str != "string") return false
+        return !isNaN(str) && 
+               !isNaN(parseFloat(str)) &&
+                    str.length===11
+        // return true
       }
 
     function verify(){
