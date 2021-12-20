@@ -16,7 +16,8 @@ let base_url = API_URL + '/graphql';
 console.log(base_url);
 const authLink = setContext(async (_, { headers }) => {
   const token = await AsyncStorage.getItem('token');
-  console.log(token, ' tokennnn')
+  //console.log("asd", JSON.parse("asd"))
+  console.log(headers, ' headers')
   return {
     headers: {
       ...headers,
@@ -24,6 +25,7 @@ const authLink = setContext(async (_, { headers }) => {
     },
   };
 });
+console.log(authLink, ' authLink')
 
 const httpLink = createHttpLink(
   {
@@ -31,12 +33,13 @@ const httpLink = createHttpLink(
   },
   (link) => console.log(link),
 );
-console.log(base_url);
+console.log(base_url,'base_url');
 export const client = new ApolloClient({
   uri: base_url,
   cache: new InMemoryCache(),
   link: authLink.concat(httpLink),
 });
+console.log(client.link.request,'client')
 
 export const LOGIN = gql`
   query ($mobileNumber: String!, $password: String!) {

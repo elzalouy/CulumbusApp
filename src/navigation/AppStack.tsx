@@ -7,10 +7,10 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 
 // import { NavigationScreenProps } from '@react-navigation/native';
 import Profile from '../screens/App/Profile';
-import ContactUs from '../screens/App/ContactUs';
+//import ContactUs from '../screens/App/ContactUs';
 import EditProfile from '../screens/App/EditProfile';
 import HomeStack from './HomeStack';
-import ProfileStack from './ProfileStack';
+//import ProfileStack from './ProfileStack';
 import Logout from '../screens/Logout';
 
 import {View, Dimensions} from 'react-native';
@@ -31,12 +31,12 @@ const screenOptions: StackNavigationOptions = {
 export default () => (
   <Drawer.Navigator initialRouteName="Home" drawerPosition="right">
     <Drawer.Screen name="Home" component={HomeStack} />
-    <Drawer.Screen name="Profile" component={ProfileStack} />
+    {/* <Drawer.Screen name="Profile" component={ProfileStack} /> */}
     {/* <Drawer.Screen name="EditProfile" component={EditProfile} />
   <Drawer.Screen name="Cities Visited" component={Profile} /> */}
     <Drawer.Screen name="About Us" component={Profile} />
     <Drawer.Screen name="Payment History" component={Profile} />
-    <Drawer.Screen name="Contact Us" component={ContactUs} />
+    {/* <Drawer.Screen name="Contact Us" component={ContactUs} /> */}
     <Drawer.Screen name="Terms and conditions" component={Profile} />
     <Drawer.Screen name="Log Out" component={Logout} />
   </Drawer.Navigator>
