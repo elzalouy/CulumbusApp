@@ -7,14 +7,14 @@ import {
   createHttpLink,
 } from '@apollo/client';
 import AsyncStorage from '@react-native-community/async-storage';
-import {setContext} from '@apollo/client/link/context';
-import {API_URL} from '@env';
+import { setContext } from '@apollo/client/link/context';
+import { API_URL } from '@env';
 
 // console.log('authLink')
 
 let base_url = API_URL + '/graphql';
 console.log(base_url);
-const authLink = setContext(async (_, {headers}) => {
+const authLink = setContext(async (_, { headers }) => {
   const token = await AsyncStorage.getItem('token');
   console.log(token, ' tokennnn')
   return {
