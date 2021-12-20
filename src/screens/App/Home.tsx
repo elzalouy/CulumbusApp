@@ -25,7 +25,7 @@ function Home(props) {
   const [offers, setOffers] = useState([]);
 
   if (props.offers !== offers) {
-    console.log(props.offers, offers.length)
+    console.log(props.offers, props.offers.length)
     setOffers(props.offers);
   }
 
@@ -99,10 +99,10 @@ function Home(props) {
         <View style={[styles.card3, { marginTop: w * 0.03 }]}>
           <Swiper
             style={styles.wrapper}
-            key={'1'}
+            key={"1"}
             // onIndexChanged={(x)=>{let y=this.state.indexes;y[index]=x;this.setState({indexes:y})}}
             // containerStyle={{backgroundColor:'silver'}}
-            loop={true}
+            loop={false}
             dot={
               <View
                 style={{
@@ -217,7 +217,7 @@ function Home(props) {
                   style={styles.card2}>
                   <View style={styles.textContainer}>
                     <Text style={styles.txt2}>City Of The Day</Text>
-                    <Text style={styles.txt3}>Explore Peru</Text>
+                    {/* <Text style={styles.txt3}>Explore Peru</Text> */}
                   </View>
                 </ImageBackground>
               </TouchableOpacity>

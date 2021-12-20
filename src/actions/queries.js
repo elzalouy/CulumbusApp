@@ -16,10 +16,11 @@ let base_url = API_URL + '/graphql';
 console.log(base_url);
 const authLink = setContext(async (_, {headers}) => {
   const token = await AsyncStorage.getItem('token');
+  console.log(token, ' tokennnn')
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${JSON.parse(token)}` : '',
+      authorization: token ? `Bearer ${token}` : '',
     },
   };
 });
