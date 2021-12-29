@@ -86,5 +86,12 @@ export const styles=StyleSheet.create({
         paddingHorizontal:w*0.02,
         paddingVertical:5,
 
-    }
+    },
+    description: {
+        color: 'black',
+        fontSize: normalize(13),
+        fontFamily: 'Anderson Grotesk',
+        marginTop: w * 0.03,
+        textAlign:'justify'
+      }
 })

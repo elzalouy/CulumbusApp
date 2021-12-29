@@ -23,14 +23,21 @@ const w = Dimensions.get('window').width;
 const h = Dimensions.get('window').height;
 function Home(props) {
   const [offers, setOffers] = useState([]);
+  const [cities, setCities] = useState([]);
 
   if (props.offers !== offers) {
     console.log(props.offers, props.offers.length)
     setOffers(props.offers);
   }
+  if (props.cities.length !== cities.length) {
+    //console.log(props.cities[0])
+    setCities(props.cities);
 
+  }
   useEffect(() => {
     props.listHotelOffers();
+    props.listCities(0);
+
     // navigation.goBack()
   }, []);
 
@@ -79,7 +86,7 @@ function Home(props) {
             source={{ uri: 'home5' }}
             resizeMode="cover"
             style={styles.card2}>
-            <View style={styles.textContainer}>
+            <View style={[styles.textContainer, { marginBottom: w * 0.06}]}>
               <Text style={styles.txt2}>COUNTRY RESTRICTIONS TABLE</Text>
             </View>
           </ImageBackground>
@@ -132,10 +139,10 @@ function Home(props) {
                 }}
               />
             }>
-            {(offers.length > 3
+            {(offers.length > 5
               ? [
                 { name: 'Hotel offers', description: 'Latest hotel offers' },
-              ].concat(offers.slice(0, 3))
+              ].concat(offers.slice(0, 5))
               : [
                 { name: 'Hotel offers', description: 'Latest hotel offers' },
               ].concat(offers)
@@ -206,18 +213,21 @@ function Home(props) {
                 }}
               />
             }>
-            {['x', 'x', 'x'].map((item) => (
+            {(cities.length > 3
+              ? cities.slice(0, 3)
+              : cities
+            ).map((item) => (
               <TouchableOpacity
-                style={{ width: w * 0.94, alignItems: 'center' }}
+                style={{ width: w * 0.94, alignItems: 'center',marginTop: w * 0.03 }}
                 onPress={() => props.navigation.navigate('Cities', { index: 0 })}
                 activeOpacity={1.0}>
                 <ImageBackground
-                  source={{ uri: 'home4' }}
+                  source={{ uri: item.cover_image_url||'home4' }}
                   resizeMode="cover"
                   style={styles.card2}>
                   <View style={styles.textContainer}>
                     <Text style={styles.txt2}>City Of The Day</Text>
-                    {/* <Text style={styles.txt3}>Explore Peru</Text> */}
+                    <Text style={styles.txt3}>{item.name}</Text>
                   </View>
                 </ImageBackground>
               </TouchableOpacity>
@@ -353,7 +363,7 @@ const styles = StyleSheet.create({
   card2: {
     backgroundColor: 'silver',
     width: w * 0.9,
-    height: w * 0.36,
+    height: w * 0.46,
     borderRadius: 15,
     overflow: 'hidden',
     justifyContent: 'flex-end',
@@ -374,7 +384,7 @@ const styles = StyleSheet.create({
   textContainer: {
     backgroundColor: 'rgba(255,255,255,0.8)',
     width: w * 0.65,
-    marginBottom: w * 0.06,
+    marginBottom: w * 0.2,
     padding: w * 0.02,
     borderTopRightRadius: 10,
     borderBottomRightRadius: 10,
@@ -406,6 +416,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   token: state.auth.token,
   offers: state.hotels.offers,
+  cities: state.venues.cities,
+
 });
 
 export default connect(mapStateToProps, actions)(Home);

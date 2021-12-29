@@ -26,6 +26,7 @@ function Card(props) {
 
   useEffect(() => {
     var x ;
+    console.log(props.event)
     if(props.event){
       if( props.event.cover_image_url)
         x =  props.event.cover_image_url
@@ -44,7 +45,7 @@ function Card(props) {
   return (
     <TouchableOpacity
       style={styles.card}
-      onPress={() => props.nav.navigate('EventDetails', {event: props.event})}>
+      onPress={() => props.event?props.nav.navigate('EventDetails', {event: props.event}):null}>
       <SkeletonContent
         containerStyle={[styles.card, {position: 'absolute'}]}
         isLoading={props.loading ? false : true}

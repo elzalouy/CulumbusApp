@@ -29,7 +29,7 @@ function ForgetSuccess(props) {
                         </View>
 
                     </View>
-                    <Text style={styles.txt}>Forget password</Text>
+                    <Text style={styles.txt}>Forgot password</Text>
                     <Text style={styles.txt2}>You can now login with your new password</Text>
                 </View>
 

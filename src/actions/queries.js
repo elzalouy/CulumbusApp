@@ -54,6 +54,7 @@ export const LOGIN = gql`
         chatID
         role
         startedChat
+        birthdate
       }
     }
   }
@@ -86,6 +87,7 @@ export const REGISTER = gql`
         chatID
         role
         startedChat
+        birthdate
       }
     }
   }
@@ -111,6 +113,7 @@ export const START_CHAT = gql`
         chatID
         role
         startedChat
+        birthdate
       }
     }
   }
@@ -128,6 +131,7 @@ export const START_CHAT_SOCIAL = gql`
         startedChat
         socialID
         socialType
+        birthdate
       }
     }
   }
@@ -147,6 +151,7 @@ export const LOGIN_WITH_FACEBOOK = gql`
         startedChat
         socialID
         socialType
+        birthdate
       }
     }
   }
@@ -166,6 +171,7 @@ export const LOGIN_WITH_APPLE = gql`
         startedChat
         socialID
         socialType
+        birthdate
       }
     }
   }
@@ -194,6 +200,8 @@ export const LIST_COUNTRY_RESTRICTIONS = gql`
       touristicPlaces
       publicTransport
       visaApplying
+      date
+      remarks
     }
   }
 `;
@@ -239,6 +247,7 @@ export const EDIT_PROFILE = gql`
       role
       startedChat
       mobileNumber
+      birthdate
     }
   }
 `;

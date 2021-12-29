@@ -11,6 +11,7 @@ import Profile from '../screens/App/Profile';
 import HomeStack from './HomeStack';
 import ProfileStack from './ProfileStack';
 import Logout from '../screens/Logout';
+import AboutUs from '../screens/App/AboutUs';
 
 import {View, Dimensions} from 'react-native';
 const w = Dimensions.get('window').width;
@@ -33,8 +34,8 @@ export default () => (
     <Drawer.Screen name="Profile" component={ProfileStack} />
     {/* <Drawer.Screen name="EditProfile" component={EditProfile} />
   <Drawer.Screen name="Cities Visited" component={Profile} /> */}
-    <Drawer.Screen name="About Us" component={Profile} />
-    <Drawer.Screen name="Payment History" component={Profile} />
+    <Drawer.Screen name="About Us" component={AboutUs} />
+    {/* <Drawer.Screen name="Payment History" component={Profile} /> */}
     {/* <Drawer.Screen name="Contact Us" component={ContactUs} /> */}
     <Drawer.Screen name="Terms and conditions" component={Profile} />
     <Drawer.Screen name="Log Out" component={Logout} />

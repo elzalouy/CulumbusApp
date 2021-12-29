@@ -71,16 +71,27 @@ function Register(props) {
 
     function verify(){
         let result=true
-        if(name && name.length>2){
-            setErrorName("")
-        }else{
-            result=false
-            if(!name){
-                setErrorName("The name is a required field.")
+        var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+        if(name&&(format.test(name) || /\d/.test(name))){
+        result=false
+
+        setErrorName("The name can not contain numbers or symbols")
+
+        } else {
+
+            if(name && name.length>2){
+                setErrorName("")
             }else{
-                setErrorName("Please enter your real name.")
+                result=false
+                if(!name){
+                    setErrorName("The name is a required field.")
+                }else{
+                    setErrorName("Please enter your real name.")
+                }
             }
         }
+
+
         if(isEmail(email)){
             setErrorEmail("")
         }else{

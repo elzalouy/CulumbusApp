@@ -60,16 +60,16 @@ function Profile(props) {
     );
     let newVisitedCountries = {...myPlace};
     let countries = [
-      'egypt',
-      'italy',
-      'switzerland',
-      'germany',
-      'austria',
-      'turkey',
+      // 'egypt',
+      // 'italy',
+      // 'switzerland',
+      // 'germany',
+      // 'austria',
+      // 'turkey',
     ];
     let features = [];
     let newWishlistedCountries = {...myPlace};
-    let wishlistedCountries = ['algeria', 'ukraine'];
+    let wishlistedCountries = [];
     let wishlistedFeatures = [];
     for (let i = 0; i < myPlace.features.length; i++) {
       if (
@@ -208,14 +208,14 @@ function Profile(props) {
           />
         ) : null}
       </MapView>
-
+{/* 
       <TouchableOpacity style={styles.button1} activeOpacity={1.0}>
         <Text style={styles.btnText}>Edit your countries</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
-      <TouchableOpacity style={styles.button2} activeOpacity={1.0}>
+      {/* <TouchableOpacity style={styles.button2} activeOpacity={1.0}>
         <Text style={styles.btnText}>Payment History</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       <TouchableOpacity
         style={styles.logoutButton}

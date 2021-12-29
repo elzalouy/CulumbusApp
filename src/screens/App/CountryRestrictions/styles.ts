@@ -70,6 +70,21 @@ export const styles = StyleSheet.create({
     fontSize: normalize(18),
     fontFamily: 'Anderson Grotesk',
   },
+  lastUpdated: {
+    color: 'red',
+    fontSize: normalize(10),
+    fontFamily: 'Anderson Grotesk',
+    flexWrap:'wrap',
+    width: w*0.3,
+    textAlign:'center',
+  },
+  currentDate: {
+    color: '#203152',
+    fontSize: normalize(12),
+    fontFamily: 'Anderson Grotesk',
+    flexWrap:'wrap',
+    width: w*0.3,
+  },
   optionCard: {
     paddingHorizontal: w * 0.02,
     // height:w*0.1,

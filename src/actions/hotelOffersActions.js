@@ -7,6 +7,7 @@ import {OFFERS, OFFERS_LOADING, SET_ASK} from './types';
 import {client, LIST_HOTEL_OFFERS} from './queries';
 
 export const listHotelOffers = () => {
+  console.log('11111')
   return async (dispatch) => {
     // dispatch({type: LOGIN_LOADING, state:true})
     await client

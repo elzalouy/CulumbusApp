@@ -32,6 +32,7 @@ function EditProfile(props) {
     };
 
   useEffect(() => {
+      console.log(props.user)
     // alert(JSON.stringify(props.user))
     if(props.user.email){
         setEmail(props.user.email)
@@ -103,7 +104,7 @@ function EditProfile(props) {
             <TextInput style={styles.input} placeholder="Enter Mobile Number Here" placeholderTextColor="rgba(32, 49, 82, 0.2)"
             onChangeText={text => setName(text)}
             value={name}
-            onSubmitEditing={() => { this.input2.focus(); }}
+           // onSubmitEditing={() => { this.input2.focus(); }}
             />
             {/* {props.user.mobileNumber?
             <>

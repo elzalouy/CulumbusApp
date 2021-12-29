@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import {normalize} from '../normalize';
-import {connect} from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { normalize } from '../normalize';
+import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import {
   View,
@@ -16,20 +16,25 @@ import Header from '../../components/Header';
 import SkeletonContent from 'react-native-skeleton-content-nonexpo';
 import FastImage from 'react-native-fast-image';
 import Icon from 'react-native-vector-icons/Entypo';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import getDirections from 'react-native-google-maps-directions';
 import Icon1 from 'react-native-vector-icons/MaterialIcons';
-import {API_URL} from '@env';
+import { API_URL } from '@env';
 let base_url = API_URL + '/files/images/';
 
 const w = Dimensions.get('window').width;
 const h = Dimensions.get('window').height;
 
+const ASPECT_RATIO = w / h;
+
+
+const LATITUDE_DELTA = 0.0922;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 function EventDetails(props) {
   const [event, setEvent] = useState({
     title: '',
     meeting_point: '',
-    city: {name: '', country: {name: ''}},
+    city: { name: '', country: { name: '' } },
     cover_image_url: '',
     description: '',
     about: '',
@@ -43,11 +48,11 @@ function EventDetails(props) {
 
   useEffect(() => {
     var x;
-    if(event){
-      if( event.cover_image_url)
-        x =  event.cover_image_url
-      if(event.images?.length)
-        x=`${base_url}${event.images[0]}.png`
+    if (event) {
+      if (event.cover_image_url)
+        x = event.cover_image_url
+      if (event.images?.length)
+        x = `${base_url}${event.images[0]}.png`
     }
     setImgUrl(x);
   }, [event]);
@@ -99,16 +104,16 @@ function EventDetails(props) {
 
       <ScrollView
         style={styles.subContainer}
-        contentContainerStyle={{paddingBottom: w * 0.05}}
+        contentContainerStyle={{ paddingBottom: w * 0.05 }}
         showsVerticalScrollIndicator={false}>
         <FastImage
-          source={{uri: imgUrl}}
+          source={{ uri: imgUrl }}
           style={styles.img}
           resizeMode={FastImage.resizeMode.cover}
           onLoad={props.onload}
         />
 
-        <View style={{flexDirection: 'row', marginTop: w * 0.03}}>
+        <View style={{ flexDirection: 'row', marginTop: w * 0.03 }}>
           {/* <Icon  name={'location'} size={normalize(15)} color={'#203152'} /> */}
           <Text style={styles.location}>
             {event.city.name}{' '}
@@ -116,11 +121,11 @@ function EventDetails(props) {
           </Text>
         </View>
         <Text style={styles.description}>{event.about}</Text>
-        <Text style={[styles.description, {marginTop: w * 0.05}]}>
+        <Text style={[styles.description, { marginTop: w * 0.05 }]}>
           {event.description}
         </Text>
 
-        {event.latitude ? (
+        {/* {event.latitude ? (
           <View
             style={{
               width: w * 0.9,
@@ -129,35 +134,59 @@ function EventDetails(props) {
             }}>
             <MapView
               provider={PROVIDER_GOOGLE}
-              style={{width: w * 0.9, height: w * 0.35}}
-              region={{
-                latitude: event.longitude,
-                longitude: event.latitude,
-                latitudeDelta: 0.00922,
-                longitudeDelta: 0.00421,
-              }}>
-              {/* <MapView.Marker
-      coordinate={{
-        latitude: event.longitude,
-        longitude: event.latitude}}
-    //   title={this.state.name}
-    //   description={marker.description}
-    /> */}
-            </MapView>
+              style={{ width: w * 0.9, height: w * 0.5 }}
+              initialRegion={{
+                latitude: parseFloat(event.longitude),
+                longitude: parseFloat(event.latitude),
+                latitudeDelta: LATITUDE_DELTA,
+                longitudeDelta: LONGITUDE_DELTA,
+              }}/>
+
+
+
+             
+            
             <Icon1
               name={'directions'}
               color="#2767AD"
-              style={{position: 'absolute', top: w * 0.04, left: w * 0.01}}
+              style={{ position: 'absolute', top: w * 0.04, left: w * 0.01 }}
               size={normalize(40)}
               onPress={() => handleGetDirections()}
             />
           </View>
-        ) : null}
+        ) : null} */}
+        <View
+          style={{
+            backgroundColor: 'white',
+            height: w * 0.5,
+            width: w * 0.9,
+            alignSelf: 'center',
+            marginTop: h * 0.02,
+            borderRadius: 12,
+            borderWidth: 1,
+            borderColor: '#E6E6E6',
+          }}>
+          {event.latitude ? (
+            <View style={[StyleSheet.absoluteFillObject]}>
+              <MapView
+                provider={PROVIDER_GOOGLE}
+                initialRegion={{
+                  latitude: parseFloat(event.latitude),
+                  longitude: parseFloat(event.latitude),
+                  latitudeDelta: LATITUDE_DELTA,
+                  longitudeDelta: LONGITUDE_DELTA,
+                }}
+                style={[StyleSheet.absoluteFillObject]}>
 
+              </MapView>
+              {/* <View style={{position: 'absolute', top: 100, left: 50}} /> */}
+            </View>
+          ) : null}
+        </View>
         <TouchableOpacity
           style={styles.loginButton}
           onPress={() =>
-            props.navigation.navigate('Reservation', {event: event})
+            props.navigation.navigate('Reservation', { event: event })
           }>
           <Text style={styles.txt4}>Reserve</Text>
         </TouchableOpacity>

@@ -1,6 +1,8 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { Text ,Dimensions, View,StatusBar, } from 'react-native';
+import 'core-js/features/promise'
+
 
 import { Provider } from 'react-redux';
 import store from './src/store';

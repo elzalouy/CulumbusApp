@@ -41,7 +41,11 @@ function CityOfTheDay(props) {
   //     setVenues(props.venues);
   //   }
   if (props.events.length !== events.length) {
-    console.log(props.events,' the events')
+    if(props.events.length){
+    console.log( Object.keys(props.events[0]),' the events')
+    console.log( props.events[0],' the events')
+
+    }
     setEvents(props.events);
   }
 
@@ -91,7 +95,7 @@ function CityOfTheDay(props) {
             onLoad={() => setmainLoaded(false)}
           />
         </View>
-        <ScrollView
+        {/* <ScrollView
           style={styles.optionsContainer}
           horizontal
           showsHorizontalScrollIndicator={false}>
@@ -114,14 +118,14 @@ function CityOfTheDay(props) {
               </Text>
             </TouchableOpacity>
           ))}
-        </ScrollView>
+        </ScrollView> */}
 
         <View style={styles.cardContainer}>
           <View style={styles.cardHeader}>
             <Text style={styles.txt2}>Let us inspire you</Text>
-            <TouchableOpacity>
+            {/* <TouchableOpacity>
               <Text style={styles.txt3}>View More</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
           <View style={styles.header2}>
             <Card
@@ -144,9 +148,9 @@ function CityOfTheDay(props) {
         <View style={styles.cardContainer}>
           <View style={styles.cardHeader}>
             <Text style={styles.txt2}>Popular active experiences</Text>
-            <TouchableOpacity>
+            {/* <TouchableOpacity>
               <Text style={styles.txt3}>View More</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
           <View style={styles.header2}>
             <Card
@@ -169,9 +173,9 @@ function CityOfTheDay(props) {
         <View style={styles.cardContainer}>
           <View style={styles.cardHeader}>
             <Text style={styles.txt2}>Around your City</Text>
-            <TouchableOpacity>
+            {/* <TouchableOpacity>
               <Text style={styles.txt3}>View More</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
           </View>
           <View style={styles.header2}>
             <Card
