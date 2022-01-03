@@ -19,8 +19,15 @@ function CountryRestrictions(props) {
   const [options, setOptions] = useState(['PCR', 'Vaccination', 'Doses', 'Shopping', 'Bars &\nRestaurants', 'Touristic\nplaces', 'Public\ntransport', 'Visa', 'Remarks', 'Date']);
   const [selected, setSelected] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [lastUpdatedDate, setLastUpdatedAt] = useState('');
 
+  React.useEffect(()=>{
+    if(props.lastUpdatedAt.LastUpdatedAt){
 
+      setLastUpdatedAt(props.lastUpdatedAt.LastUpdatedAt)
+
+    }
+  },[props.lastUpdatedAt])
   if (props.restrictions.length !== restrictions.length) {
     console.log(props.restrictions)
     let x = []
@@ -38,6 +45,7 @@ function CountryRestrictions(props) {
   useEffect(() => {
 
     props.listCountryRestrions()
+    props.listGlobalFields()
     return () => {
       //   props.clearCityActivities()
     }
@@ -86,7 +94,7 @@ function CountryRestrictions(props) {
         {/* <Text style={styles.txt}>{JSON.stringify(restrictions)}</Text> */}
         <View style={{ width: w * 0.9, flexDirection: 'row', alignItems: 'flex-start' }}>
           <Text >
-            <Text style={styles.lastUpdated}>Current date: {mm}/{dd}/{yyyy}</Text>
+            <Text style={styles.lastUpdated}>Current date: {lastUpdatedDate}</Text>
 
           </Text>
         </View>
@@ -200,6 +208,8 @@ function CountryRestrictions(props) {
 const mapStateToProps = state => ({
   restrictions: state.restrictions.restrictions,
   restrictionsLoading: state.restrictions.restrictionsLoading,
+  lastUpdatedAt: state.restrictions.lastUpdatedAt,
+
 
 })
 

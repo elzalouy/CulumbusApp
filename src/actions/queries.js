@@ -33,13 +33,13 @@ const httpLink = createHttpLink(
   },
   (link) => console.log(link),
 );
-console.log(base_url,'base_url');
+console.log(base_url, 'base_url');
 export const client = new ApolloClient({
   uri: base_url,
   cache: new InMemoryCache(),
   link: authLink.concat(httpLink),
 });
-console.log(client.link.request,'client')
+console.log(client.link.request, 'client')
 
 export const LOGIN = gql`
   query ($mobileNumber: String!, $password: String!) {
@@ -303,6 +303,15 @@ export const LIST_ADRENALINE_CITIES = gql`
       _id
       name
       images
+    }
+  }
+`;
+
+export const LIST_GLOBAL_FIELDS = gql`
+  query {
+    listGlobalFields {
+      _id
+      LastUpdatedAt
     }
   }
 `;

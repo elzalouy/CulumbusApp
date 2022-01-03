@@ -17,6 +17,7 @@ import {
   USER_ONLY,
   RESTRICTIONS,
   RESTRICTIONS_LOADING,
+  SAVE_LAST_UPDATED_DATE,
 } from './types';
 
 import {
@@ -24,6 +25,7 @@ import {
   START_CHAT,
   START_CHAT_SOCIAL,
   LIST_COUNTRY_RESTRICTIONS,
+  LIST_GLOBAL_FIELDS,
 } from './queries';
 import {API_URL} from '@env';
 
@@ -136,6 +138,25 @@ export const startChatSocial = (data) => {
         return 'error';
       });
     return id;
+  };
+};
+export const listGlobalFields = () => {
+  return async (dispatch) => {
+    await client
+      .query({
+        query: LIST_GLOBAL_FIELDS,
+      })
+      .then(async function ({data: response}) {
+        console.log(response);;
+        dispatch({
+          type: SAVE_LAST_UPDATED_DATE,
+          field: response.listGlobalFields[0],
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.log(error.data);;
+      });;
   };
 };
 
